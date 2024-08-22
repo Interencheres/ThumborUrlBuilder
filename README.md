@@ -29,8 +29,7 @@ var crypto = require('crypto');
 var hashFn = function (stringToHash, secret) {
     var hmac = crypto.createHmac('sha1', secret);
     hmac.update(stringToHash);
-    var hash = hmac.digest('base64');
-    return hash.replace(/\+/g, '-').replace(/\//g, '_');
+    return hmac.digest('base64url') + '=';
 }
 
 var ThumborUrlBuilder = require('thumbor-url-builder');
